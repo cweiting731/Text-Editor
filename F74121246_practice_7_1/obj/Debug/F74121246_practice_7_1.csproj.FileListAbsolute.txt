@@ -20,3 +20,4 @@ C:\Users\周煒庭\Desktop\大二上 周煒庭 資訊116 F74121246\視窗程式�
 C:\Users\周煒庭\Desktop\大二上 周煒庭 資訊116 F74121246\視窗程式設計 張瑞紘\week 8 practice 7\F74121246_practice_7_2\F74121246_practice_7_1\obj\Debug\F74121246_practice_7_1.csproj.CoreCompileInputs.cache
 C:\Users\周煒庭\Desktop\大二上 周煒庭 資訊116 F74121246\視窗程式設計 張瑞紘\week 8 practice 7\F74121246_practice_7_2\F74121246_practice_7_1\obj\Debug\F74121246_practice_7_1.exe
 C:\Users\周煒庭\Desktop\大二上 周煒庭 資訊116 F74121246\視窗程式設計 張瑞紘\week 8 practice 7\F74121246_practice_7_2\F74121246_practice_7_1\obj\Debug\F74121246_practice_7_1.pdb
+C:\Users\周煒庭\Desktop\大二上 周煒庭 資訊116 F74121246\視窗程式設計 張瑞紘\week 8 practice 7\F74121246_practice_7_2\F74121246_practice_7_1\obj\Debug\F74121246_practice_7_1.FindAndReplace.resources

@@ -61,7 +61,7 @@
             this.MnuExit});
             this.menu.Location = new System.Drawing.Point(0, 0);
             this.menu.Name = "menu";
-            this.menu.Size = new System.Drawing.Size(678, 40);
+            this.menu.Size = new System.Drawing.Size(678, 38);
             this.menu.TabIndex = 0;
             this.menu.Text = "menuStrip1";
             // 
@@ -71,7 +71,7 @@
             this.MnuTSave,
             this.MnuTSaveNew});
             this.mnuFile.Name = "mnuFile";
-            this.mnuFile.Size = new System.Drawing.Size(77, 36);
+            this.mnuFile.Size = new System.Drawing.Size(77, 34);
             this.mnuFile.Text = "檔案";
             // 
             // MnuTSave
@@ -98,7 +98,7 @@
             this.MnuTRedo,
             this.MnuTCount});
             this.MnuEdit.Name = "MnuEdit";
-            this.MnuEdit.Size = new System.Drawing.Size(77, 36);
+            this.MnuEdit.Size = new System.Drawing.Size(77, 34);
             this.MnuEdit.Text = "編輯";
             // 
             // MnuTCut
@@ -151,7 +151,7 @@
             this.MnuTFont,
             this.MnuTColor});
             this.MnuText.Name = "MnuText";
-            this.MnuText.Size = new System.Drawing.Size(77, 36);
+            this.MnuText.Size = new System.Drawing.Size(77, 34);
             this.MnuText.Text = "文字";
             // 
             // MnuTFont
@@ -171,13 +171,14 @@
             // MnuFindAndReplace
             // 
             this.MnuFindAndReplace.Name = "MnuFindAndReplace";
-            this.MnuFindAndReplace.Size = new System.Drawing.Size(125, 36);
+            this.MnuFindAndReplace.Size = new System.Drawing.Size(125, 34);
             this.MnuFindAndReplace.Text = "尋找取代";
+            this.MnuFindAndReplace.Click += new System.EventHandler(this.MnuFindAndReplace_Click);
             // 
             // MnuExit
             // 
             this.MnuExit.Name = "MnuExit";
-            this.MnuExit.Size = new System.Drawing.Size(77, 36);
+            this.MnuExit.Size = new System.Drawing.Size(77, 34);
             this.MnuExit.Text = "結束";
             this.MnuExit.Click += new System.EventHandler(this.MnuExit_Click);
             // 
@@ -185,7 +186,7 @@
             // 
             this.txt.AllowDrop = true;
             this.txt.Dock = System.Windows.Forms.DockStyle.Top;
-            this.txt.Location = new System.Drawing.Point(0, 40);
+            this.txt.Location = new System.Drawing.Point(0, 38);
             this.txt.Multiline = true;
             this.txt.Name = "txt";
             this.txt.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;

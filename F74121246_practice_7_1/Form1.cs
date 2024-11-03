@@ -15,7 +15,7 @@ namespace F74121246_practice_7_1
     {
         int MAX_REDO_TXT_AMOUNT = 10;
         int MAX_REDO_UNDO_LENGTH = 20;
-        int AUTO_SAVE_INTERVAL = 20000;
+        int AUTO_SAVE_INTERVAL = 60000;
         string filePath = "";
         Stack<string> undo;
         Stack<string> redo;
@@ -256,7 +256,7 @@ namespace F74121246_practice_7_1
         bool undoFinish = false;
         private void txt_TextChanged(object sender, EventArgs e)
         {
-            if (!isInit)
+            if (!isInit && !isReplace_All)
             {
                 isSave = false; // txt改變 改為未存檔
                 if (!redoing_and_undoing) // 存進 undo
@@ -284,7 +284,7 @@ namespace F74121246_practice_7_1
                 Queue<string> tmp = new Queue<string>(undo.Reverse());
                 tmp.Dequeue();
                 undo = new Stack<string>(tmp.ToArray());
-                testUndoRedo();
+                //testUndoRedo();
             }
             undo.Push(nowTxT);
             nowTxT = Merge_txt();
@@ -334,7 +334,6 @@ namespace F74121246_practice_7_1
             else
                 MnuTRedo.Enabled = true;
         }
-
         private void testUndoRedo() // print undo and redo // test
         {
             Console.WriteLine("-----------------------");
@@ -343,7 +342,7 @@ namespace F74121246_practice_7_1
             foreach (string s in undo)
             {
                 Console.WriteLine(count++);
-                Console.WriteLine(s.Split(new[] {'\n'}, 2)[1]);
+                Console.WriteLine(s.Split(new[] { '\n' }, 2)[1]);
             }
             count = 1;
             Console.WriteLine($"redo: {redo.Count}");
@@ -351,6 +350,89 @@ namespace F74121246_practice_7_1
             {
                 Console.WriteLine(count++);
                 Console.WriteLine(s.Split(new[] { '\n' }, 2)[1]);
+            }
+        }
+
+        private void MnuFindAndReplace_Click(object sender, EventArgs e)
+        {
+            FindAndReplace findAndReplace = new FindAndReplace();
+            findAndReplace.Find += Find;
+            findAndReplace.Replace += Replace;
+            findAndReplace.ReplaceAll += Replace_All;
+            findAndReplace.Show();
+        }
+
+        private void Find(object sender, FindAndReplace_Package findAndReplace_Package)
+        {
+            string content = findAndReplace_Package.txtFind.Trim();
+            int selectionStartPosition = txt.SelectionStart;
+            
+            // 初始鼠標位置搜到底部
+            for (int i = txt.SelectionStart + txt.SelectionLength; i < txt.Text.Length - content.Length; i++) 
+            {
+                txt.Select(i, content.Length);
+                if (content == txt.SelectedText.Trim())
+                {
+                    txt.Focus();
+                    txt.ScrollToCaret();
+                    return;
+                }
+            }
+            // 回到開頭開始搜
+            for (int i = 0; i < selectionStartPosition; i++)
+            {
+                txt.Select(i, content.Length);
+                if (content == txt.SelectedText.Trim())
+                {
+                    txt.Focus();
+                    txt.ScrollToCaret();
+                    return;
+                }
+            }
+
+            MessageBox.Show("已找不到更多匹配項目", "訊息", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            txt.Select(0, 0);
+        }
+        private void Replace(object sender, FindAndReplace_Package findAndReplace_Package)
+        {
+            string txtfind = findAndReplace_Package.txtFind.Trim();
+            string txtreplace = findAndReplace_Package.txtReplace.Trim();
+            if (txtfind == txt.SelectedText.Trim())
+            {
+                txt.SelectedText = txtreplace;
+                txt.Focus();
+                txt.ScrollToCaret();
+            }
+            else
+            {
+                MessageBox.Show("找不到應替換的文字", "錯誤", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        bool isReplace_All = false;
+        private void Replace_All(object sender, FindAndReplace_Package findAndReplace_Package)
+        {
+            isReplace_All = true;
+            string txtFind = findAndReplace_Package.txtFind.Trim();
+            string txtReplace = findAndReplace_Package.txtReplace.Trim();
+            bool found = false;
+            for (int i = 0; i < txt.Text.Length - txtFind.Length; i++)
+            {
+                txt.Select(i, txtFind.Length);
+                if (txt.SelectedText.Trim() == txtFind)
+                {
+                    txt.SelectedText = txtReplace;
+
+                    found = true;
+                }
+            }
+            isReplace_All = false;
+            txt.Text = txt.Text + " ";
+            txt.Select(0, 0);
+            txt.Focus();
+            txt.ScrollToCaret();
+            if (!found)
+            {
+                MessageBox.Show("找不到應替換的文字", "錯誤", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
